@@ -1,0 +1,26 @@
+{
+  "assessment_id": "negative-foreign-saas-fixture",
+  "profile_id": "EG-SOV-IAM-PAM-0.2",
+  "subject": "Synthetic mandatory foreign SaaS control plane",
+  "scores": {
+    "root-key-custody": 5,
+    "decision-plane-locality": 0,
+    "data-telemetry-control": 3,
+    "offline-continuity": 0,
+    "administrative-control": 2,
+    "software-supply-chain": 4,
+    "portability-exit": 2,
+    "skills-operability": 1
+  },
+  "gates": {
+    "egypt-controlled-root-keys": false,
+    "no-mandatory-foreign-control-plane": false,
+    "offline-revocation-and-break-glass": false,
+    "dual-control-for-root-operations": true,
+    "local-immutable-audit-copy": false,
+    "tested-export-and-restore": false,
+    "no-standing-vendor-super-admin": false
+  },
+  "evidence": ["synthetic fixture"],
+  "limitations": ["Not a claim about a named product"]
+}

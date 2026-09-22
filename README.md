@@ -3,7 +3,7 @@
 [![CI](https://github.com/AAH20/egypt-digital-trust-map/actions/workflows/verify.yml/badge.svg)](https://github.com/AAH20/egypt-digital-trust-map/actions/workflows/verify.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
-An open, bilingual-ready registry and interoperability lab for Egypt's IAM, PAM, PKI, cybersecurity, biometrics, video-surveillance governance, AI-agent identity, and critical-infrastructure ecosystem.
+An open, bilingual-ready registry, sovereignty profile, and interoperability lab for Egypt's IAM, PAM, PKI, cybersecurity, biometrics, video-surveillance governance, AI-agent identity, and critical-infrastructure ecosystem.
 
 The project separates three things that are often confused:
 
@@ -13,6 +13,22 @@ The project separates three things that are often confused:
 
 The current release is a seed registry and validation tool. It does not claim complete market coverage, certification, regulatory approval, or product endorsement. Coverage grows through source-backed pull requests and scheduled verification.
 
+## Sovereignty rule
+
+Egyptian digital sovereignty means that Egyptian operators retain effective control of root keys, authorization policy, privileged recovery, identity and biometric data flows, audit evidence, software-update admission, and supplier exit. A product's country of origin is a supply-chain input, but it is not a substitute for testing those controls.
+
+The sovereignty tier therefore requires:
+
+- Egypt-controlled HSM roots and recovery shares.
+- Local authentication, authorization, revocation, and PAM decisions during external isolation.
+- No standing vendor super-admin or mandatory foreign management plane.
+- Quorum approval for root, recovery, trust-domain, and emergency changes.
+- Short-lived human, workload, agent, device, and robot credentials.
+- Independently retained append-only evidence.
+- Tested export, restore, migration, rollback, and supplier-exit procedures.
+
+Foreign proprietary platforms may be supported through bounded compatibility adapters. They cannot be the sole or irreplaceable root of trust for a deployment claiming the sovereign profile.
+
 ## Why this repository exists
 
 Egypt has authoritative but distributed information: EG-CERT publishes accredited cybersecurity providers; ITIDA publishes licensed digital-signature providers; vendors and integrators publish their own services; and identity, physical security, and AI governance are normally evaluated in separate procurement processes. This repository provides one open data model for examining those relationships without collecting operational credentials, biometric templates, or surveillance footage.
@@ -20,16 +36,38 @@ Egypt has authoritative but distributed information: EG-CERT publishes accredite
 ## Architecture
 
 ```mermaid
-flowchart LR
-    S[Official and first-party sources] --> R[Versioned player registry]
-    R --> C[Capability claims]
-    C --> P[Integration profiles]
-    P --> L[Synthetic interoperability labs]
-    L --> E[Signed evidence manifests]
-    E --> A[AgentIAM authorization contracts]
-    E --> G[GRC Claw control mappings]
-    E --> B[Robot Black Box evidence]
-    E -. future public views .-> W[a2zsoc.com]
+flowchart TB
+    subgraph EGY["Egypt-controlled sovereignty tier"]
+        HSM[Offline roots and HSM quorum]
+        ID[Self-hosted identity and federation]
+        PAM[Local secrets and privileged access]
+        PDP[Local policy decision points]
+        EVT[Append-only evidence and recovery]
+        HSM --> ID --> PAM --> PDP --> EVT
+    end
+
+    subgraph EDGE["Bounded integration edge"]
+        FED[Standards federation gateway]
+        CAM[Camera and biometric assertion gateway]
+        VEN[Foreign or proprietary compatibility adapters]
+    end
+
+    subgraph ASSURE["Independent assurance"]
+        MAP[Source-backed Egypt market map]
+        LAB[Synthetic conformance labs]
+        AGENT[AgentIAM]
+        GRC[GRC Claw]
+        RBB[Robot Black Box]
+    end
+
+    FED --> ID
+    CAM --> PDP
+    VEN --> FED
+    PDP --> AGENT --> EVT
+    EVT --> GRC
+    EVT --> RBB
+    MAP --> LAB --> GRC
+    EVT -. future read-only views .-> WEB[a2zsoc.com]
 ```
 
 ## Repository structure
@@ -37,6 +75,7 @@ flowchart LR
 ```text
 registry/                 Source-backed market records
 integrations/             Protocol and product-family profiles
+sovereignty/              Weighted profile, hard gates and fixtures
 schemas/                  JSON Schema contracts
 src/egypt_trust_map/      Dependency-free validator and CLI
 tests/                    Registry integrity tests
@@ -45,19 +84,23 @@ docs/                     Governance, contribution and roadmap detail
 
 ## Seed coverage
 
-The first dataset records regulator and ecosystem entries from public sources, including NTRA/EG-CERT, ITIDA, the Egyptian Root CA, government CA, ITIDA-listed trust-service providers, CyShield, and ZeroTech. Records carry `source_status`, `last_verified`, and source URLs. Inclusion means only that the record has public evidence.
+The repository now contains two complementary datasets:
+
+- A nine-entry core trust registry covering NTRA/EG-CERT, ITIDA, the Egyptian Root CA context, GOV-CA, ITIDA-listed trust-service providers, CyShield, and ZeroTech.
+- A 42-entry snapshot of every numbered organization visible in the official EG-CERT accredited cybersecurity-provider register on the verification date.
+
+Registry entries carry verification dates and public sources. Inclusion means only that public evidence exists. Accreditation applies only to the service and customer scopes in the live official register and must be rechecked before procurement.
 
 ## Main integration profiles
 
-- Identity federation: OpenID Connect, OAuth, SAML and LDAP
-- Lifecycle governance: SCIM and joiner/mover/leaver evidence
-- Strong authentication: FIDO2/WebAuthn and PKI
-- Workload identity: SPIFFE/SPIRE
-- Authorization: OpenID AuthZEN and AgentIAM contracts
-- Privileged access and secrets: CyberArk, Delinea, BeyondTrust, OpenBao and Vault-compatible APIs
-- Video systems: ONVIF event and device metadata, with synthetic fixtures only
-- Evidence: OpenTelemetry, OSCAL-compatible mappings and Robot Black Box receipts
-- Governance: GRC Claw evidence ingestion
+- Sovereign identity: Keycloak, FreeIPA, Samba AD and OpenLDAP behind OIDC, SAML, LDAP and SCIM contracts
+- Strong authentication: FIDO2/WebAuthn, locally controlled PKI and Egyptian trust-service integration
+- Secrets and PAM core: OpenBao, short-lived SSH/X.509/database credentials, HSM-backed recovery and dual control
+- Workload identity: SPIFFE/SPIRE with local trust domains and attestation
+- Authorization: OpenID AuthZEN, AgentIAM and OPA/Rego contracts
+- Video and biometrics: isolated ONVIF gateways and signed assertions, with synthetic fixtures only
+- Evidence: OpenTelemetry, OSCAL-compatible mappings, GRC Claw and Robot Black Box receipts
+- Foreign proprietary products: compatibility and migration adapters subject to sovereignty hard gates
 
 Product names identify integration targets and do not imply affiliation.
 
@@ -67,8 +110,43 @@ Product names identify integration targets and do not imply affiliation.
 python -m pip install -e .
 egypt-trust-map verify
 egypt-trust-map summary
+egypt-trust-map assess-sovereignty
 python -m unittest discover -s tests -v
 ```
+
+Evaluate the included negative fixture:
+
+```bash
+egypt-trust-map assess-sovereignty \
+  --assessment sovereignty/foreign-saas-negative-fixture.json
+```
+
+It intentionally exits non-zero because mandatory foreign control, missing local evidence, weak exit, and standing vendor access cannot be compensated by feature scores.
+
+## Sovereignty score
+
+The executable profile contains seven hard gates and eight weighted dimensions totaling 100 points. A deployment must pass every hard gate and score at least 80. A score of 100 with one failed gate is still `NOT_QUALIFIED`.
+
+| Dimension | Weight |
+|---|---:|
+| Root-key custody | 20 |
+| Decision-plane locality | 15 |
+| Data and telemetry control | 15 |
+| Offline continuity | 15 |
+| Administrative control | 10 |
+| Software supply chain | 10 |
+| Portability and exit | 10 |
+| Local skills and operability | 5 |
+
+## Vendor-origin clarification
+
+CyberArk was organized under Israeli law. Palo Alto Networks states that it completed the acquisition of CyberArk on February 11, 2026, after which CyberArk became its wholly owned subsidiary. It is therefore present only in [`foreign-compatibility.json`](integrations/foreign-compatibility.json), not in the sovereign core.
+
+RSA Security says it was founded in 1982 by Ron Rivest, Adi Shamir, and Leonard Adleman around their MIT cryptography work. Adi Shamir is Israeli, but RSA Security should not be described as an Israeli company on that basis. It remains a foreign proprietary dependency and receives the same operational-control assessment as any other external provider.
+
+See [sovereignty architecture](docs/SOVEREIGNTY_REFERENCE_ARCHITECTURE.md), [threat model](docs/THREAT_MODEL.md), and [procurement gates](docs/PROCUREMENT_AND_EXIT_GATES.md).
+
+Arabic readers can start with the [Arabic executive summary](docs/ARABIC_EXECUTIVE_SUMMARY.md). The [source register](docs/SOURCES.md) collects the mutable official and first-party references used by the project.
 
 ## Data-safety boundary
 

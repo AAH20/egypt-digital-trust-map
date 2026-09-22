@@ -1,0 +1,26 @@
+{
+  "assessment_id": "reference-sovereign-control-plane",
+  "profile_id": "EG-SOV-IAM-PAM-0.2",
+  "subject": "Protocol-first self-hosted reference architecture",
+  "scores": {
+    "root-key-custody": 20,
+    "decision-plane-locality": 15,
+    "data-telemetry-control": 15,
+    "offline-continuity": 15,
+    "administrative-control": 10,
+    "software-supply-chain": 8,
+    "portability-exit": 8,
+    "skills-operability": 4
+  },
+  "gates": {
+    "egypt-controlled-root-keys": true,
+    "no-mandatory-foreign-control-plane": true,
+    "offline-revocation-and-break-glass": true,
+    "dual-control-for-root-operations": true,
+    "local-immutable-audit-copy": true,
+    "tested-export-and-restore": true,
+    "no-standing-vendor-super-admin": true
+  },
+  "evidence": ["reference architecture", "synthetic recovery exercise", "configuration export test"],
+  "limitations": ["Example assessment; not certification", "Independent implementation review still required"]
+}

@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 
 from egypt_trust_map.registry import load_registry, summarize, validate_registry
+from egypt_trust_map.sovereignty import assess, load_json, validate_profile, validate_provider_register
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +18,11 @@ class RegistryTests(unittest.TestCase):
         document = load_registry(ROOT / "registry" / "players.json")
         self.assertEqual(9, summarize(document)["players"])
 
+    def test_full_egcert_snapshot_is_valid(self):
+        document = load_json(ROOT / "registry" / "egcert-accredited-providers.json")
+        self.assertEqual([], validate_provider_register(document))
+        self.assertEqual(42, len(document["providers"]))
+
     def test_duplicate_id_fails_closed(self):
         document = load_registry(ROOT / "registry" / "players.json")
         document["players"].append(dict(document["players"][0]))
@@ -28,12 +34,35 @@ class RegistryTests(unittest.TestCase):
         self.assertTrue(any("non-HTTPS" in error for error in validate_registry(document)))
 
     def test_json_assets_parse(self):
-        for path in (ROOT / "registry").glob("*.json"):
-            json.loads(path.read_text())
-        for path in (ROOT / "integrations").glob("*.json"):
-            json.loads(path.read_text())
-        for path in (ROOT / "schemas").glob("*.json"):
-            json.loads(path.read_text())
+        for directory in ("registry", "integrations", "schemas", "sovereignty", "controls"):
+            for path in (ROOT / directory).glob("*.json"):
+                json.loads(path.read_text())
+
+    def test_sovereignty_profile_totals_100(self):
+        profile = load_json(ROOT / "sovereignty" / "requirements.json")
+        self.assertEqual([], validate_profile(profile))
+
+    def test_reference_sovereignty_architecture_qualifies(self):
+        profile = load_json(ROOT / "sovereignty" / "requirements.json")
+        submission = load_json(ROOT / "sovereignty" / "reference-assessment.json")
+        result = assess(profile, submission)
+        self.assertTrue(result["qualified"])
+        self.assertEqual(95.0, result["score"])
+
+    def test_foreign_saas_fixture_fails_non_compensating_gates(self):
+        profile = load_json(ROOT / "sovereignty" / "requirements.json")
+        submission = load_json(ROOT / "sovereignty" / "foreign-saas-negative-fixture.json")
+        result = assess(profile, submission)
+        self.assertFalse(result["qualified"])
+        self.assertIn("no-mandatory-foreign-control-plane", result["failed_gates"])
+
+    def test_high_score_cannot_compensate_for_failed_gate(self):
+        profile = load_json(ROOT / "sovereignty" / "requirements.json")
+        submission = load_json(ROOT / "sovereignty" / "reference-assessment.json")
+        submission["gates"]["no-standing-vendor-super-admin"] = False
+        result = assess(profile, submission)
+        self.assertEqual(95.0, result["score"])
+        self.assertFalse(result["qualified"])
 
 
 if __name__ == "__main__":

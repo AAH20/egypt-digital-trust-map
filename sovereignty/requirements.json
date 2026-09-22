@@ -1,0 +1,24 @@
+{
+  "profile_id": "EG-SOV-IAM-PAM-0.2",
+  "title": "Egypt Sovereign IAM/PAM Minimum Profile",
+  "score_threshold": 80,
+  "dimensions": [
+    {"id": "root-key-custody", "weight": 20, "question": "Are root and recovery keys generated, held and used under Egypt-controlled HSM and quorum procedures?"},
+    {"id": "decision-plane-locality", "weight": 15, "question": "Can authentication, authorization and PAM decisions continue locally without a foreign control plane?"},
+    {"id": "data-telemetry-control", "weight": 15, "question": "Are identity, session, biometric and audit data flows locally controlled and independently observable?"},
+    {"id": "offline-continuity", "weight": 15, "question": "Can critical operations, revocation and break-glass function during external network isolation?"},
+    {"id": "administrative-control", "weight": 10, "question": "Are vendor support paths disabled by default and activated through scoped, recorded, time-limited approval?"},
+    {"id": "software-supply-chain", "weight": 10, "question": "Are artifacts pinned, signed, scanned, staged and supported by SBOM and rollback evidence?"},
+    {"id": "portability-exit", "weight": 10, "question": "Can identities, policies, evidence and secrets metadata be exported and restored to a replacement implementation?"},
+    {"id": "skills-operability", "weight": 5, "question": "Can an Egyptian operations team rebuild, recover and audit the platform without vendor intervention?"}
+  ],
+  "hard_gates": [
+    "egypt-controlled-root-keys",
+    "no-mandatory-foreign-control-plane",
+    "offline-revocation-and-break-glass",
+    "dual-control-for-root-operations",
+    "local-immutable-audit-copy",
+    "tested-export-and-restore",
+    "no-standing-vendor-super-admin"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "policy": "Foreign proprietary products may be tested at the compatibility perimeter but must not become an unavoidable sovereignty-tier control plane.",
+  "products": [
+    {
+      "id": "cyberark",
+      "company": "CyberArk Software Ltd.",
+      "current_parent": "Palo Alto Networks, Inc.",
+      "jurisdiction_note": "CyberArk was organized under Israeli law and became a wholly owned Palo Alto Networks subsidiary on 2026-02-11.",
+      "allowed_role": "compatibility-adapter-or-migration-source",
+      "prohibited_role": "sole root of trust or mandatory sovereignty-tier control plane",
+      "required_controls": ["no vendor-held root keys", "no mandatory outbound management path", "local immutable audit copy", "tested credential export", "documented replacement plan"],
+      "sources": ["https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-completes-acquisition-of-cyberark-to-secure-the-ai-era"]
+    },
+    {
+      "id": "rsa-security",
+      "company": "RSA Security",
+      "jurisdiction_note": "RSA states that it was founded in 1982 by three MIT mathematicians. Adi Shamir is Israeli; that fact alone does not make RSA Security an Israeli company.",
+      "allowed_role": "compatibility-adapter-or-migration-source",
+      "prohibited_role": "unreviewed dependency for sovereign authentication",
+      "required_controls": ["local verifier continuity", "portable identities", "customer-held recovery material", "tested replacement plan"],
+      "sources": ["https://www.rsa.com/company/rsa-cryptography/"]
+    },
+    {
+      "id": "generic-foreign-pam",
+      "company": "Any foreign proprietary IAM/PAM provider",
+      "jurisdiction_note": "Assessment is based on operational control and dependency, not nationality alone.",
+      "allowed_role": "bounded compatibility zone",
+      "prohibited_role": "unobservable or irreplaceable super-admin plane",
+      "required_controls": ["data-flow disclosure", "support-access control", "update staging", "SBOM", "egress allow-list", "contractual exit", "tested offline continuity"]
+    }
+  ]
+}

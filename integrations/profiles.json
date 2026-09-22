@@ -1,14 +1,54 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
+  "policy": "protocol-first-sovereignty-first",
   "profiles": [
-    {"id": "oidc-oauth", "domain": "identity-federation", "interfaces": ["OIDC", "OAuth 2.x"]},
-    {"id": "saml-ldap", "domain": "enterprise-identity", "interfaces": ["SAML 2.0", "LDAP"]},
-    {"id": "scim", "domain": "identity-lifecycle", "interfaces": ["SCIM 2.0"]},
-    {"id": "fido-pki", "domain": "strong-authentication", "interfaces": ["FIDO2", "WebAuthn", "X.509"]},
-    {"id": "spiffe-spire", "domain": "workload-identity", "interfaces": ["SPIFFE ID", "X.509-SVID", "JWT-SVID"]},
-    {"id": "authzen-agentiam", "domain": "authorization", "interfaces": ["AuthZEN", "AgentIAM JSON contracts"]},
-    {"id": "pam-secrets", "domain": "privileged-access", "interfaces": ["CyberArk", "Delinea", "BeyondTrust", "OpenBao", "Vault-compatible API"]},
-    {"id": "onvif", "domain": "video-governance", "interfaces": ["ONVIF device metadata", "ONVIF events"]},
-    {"id": "evidence", "domain": "assurance", "interfaces": ["OpenTelemetry", "OSCAL", "GRC Claw", "Robot Black Box"]}
+    {
+      "id": "sovereign-identity-core",
+      "domain": "identity-and-federation",
+      "role": "core",
+      "interfaces": ["OIDC", "OAuth 2.x", "SAML 2.0", "LDAP", "SCIM 2.0", "FIDO2", "WebAuthn", "X.509"],
+      "preferred_implementations": ["Keycloak", "FreeIPA", "Samba AD", "OpenLDAP"],
+      "requirements": ["self-hosted", "Egypt-controlled administration", "offline operation", "complete export"]
+    },
+    {
+      "id": "sovereign-secrets-pam-core",
+      "domain": "privileged-access-and-secrets",
+      "role": "core",
+      "interfaces": ["SSH certificates", "X.509", "OIDC", "database dynamic credentials", "PKCS#11"],
+      "preferred_implementations": ["OpenBao", "step-ca", "smallstep-compatible protocols"],
+      "requirements": ["Egypt-held HSM roots", "short-lived credentials", "dual control", "session evidence", "no mandatory foreign SaaS"]
+    },
+    {
+      "id": "workload-identity",
+      "domain": "workload-identity",
+      "role": "core",
+      "interfaces": ["SPIFFE ID", "X.509-SVID", "JWT-SVID"],
+      "preferred_implementations": ["SPIRE"],
+      "requirements": ["local trust domains", "node and workload attestation", "short-lived identity"]
+    },
+    {
+      "id": "authorization",
+      "domain": "authorization",
+      "role": "core",
+      "interfaces": ["AuthZEN", "AgentIAM JSON contracts", "OPA/Rego", "Cedar policy model"],
+      "preferred_implementations": ["AgentIAM", "OPA"],
+      "requirements": ["purpose binding", "tenant isolation", "delegation limits", "fail closed"]
+    },
+    {
+      "id": "video-governance",
+      "domain": "video-and-biometric-governance",
+      "role": "edge-adapter",
+      "interfaces": ["ONVIF device metadata", "ONVIF events", "signed biometric assertion"],
+      "preferred_implementations": ["vendor-neutral gateway"],
+      "requirements": ["camera VLAN isolation", "no direct Internet egress", "no raw biometric template in authorization logs", "local retention policy"]
+    },
+    {
+      "id": "assurance-evidence",
+      "domain": "assurance",
+      "role": "core",
+      "interfaces": ["OpenTelemetry", "OSCAL", "GRC Claw", "Robot Black Box", "in-toto-style attestations"],
+      "preferred_implementations": ["GRC Claw", "Robot Black Box"],
+      "requirements": ["append-only evidence", "Egypt-controlled signing keys", "offline verification"]
+    }
   ]
 }
