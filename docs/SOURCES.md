@@ -8,16 +8,14 @@ Sources are recorded for factual verification, not as project endorsements.
 - [EG-CERT accredited cybersecurity service providers](https://egcert.eg/cybersecurityserviceproviders-eng/)
 - [ITIDA digital-signature regulation and licensed providers](https://itida.gov.eg/English/Pages/E-Signature.aspx)
 - [Egyptian Root CA](https://rootca.itida.gov.eg/)
+- [NTRA licensed-operator register](https://www.tra.gov.eg/wp-content/uploads/2025/03/Info-About-Licensed-Operators-without-services-English2.pdf)
+- [CBE Instant Payment Network participants](https://www.cbe.org.eg/en/payment-systems-and-services/instant-payment-network)
+- [FRA registers and updates](https://fra.gov.eg/en/updates/)
 
 ## Local ecosystem examples
 
 - [CyShield](https://cyshield.com/)
 - [ZeroTech network-camera catalog](https://zerotechsystems.com/product-category/products/cctv/network-cameras/)
-
-## Vendor-origin clarifications
-
-- [Palo Alto Networks completion of the CyberArk acquisition](https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-completes-acquisition-of-cyberark-to-secure-the-ai-era)
-- [RSA Security history](https://www.rsa.com/company/rsa-cryptography/)
 
 ## Open technical foundations
 

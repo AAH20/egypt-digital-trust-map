@@ -11,7 +11,7 @@ The project separates three things that are often confused:
 2. **A player claims a capability** — recorded as a claim, not an endorsement.
 3. **An integration passed a test** — supported by a reproducible evidence bundle.
 
-The current release is a seed registry and validation tool. It does not claim complete market coverage, certification, regulatory approval, or product endorsement. Coverage grows through source-backed pull requests and scheduled verification.
+The current release is a source-backed registry and executable validation tool. It does not claim certification, regulatory approval, market share, or product endorsement. Coverage is comprehensive for the named, dated official snapshots and expands through source-backed pull requests and scheduled verification.
 
 ## Sovereignty rule
 
@@ -76,20 +76,27 @@ flowchart TB
 registry/                 Source-backed market records
 integrations/             Protocol and product-family profiles
 sovereignty/              Weighted profile, hard gates and fixtures
+hierarchy/                Public-safe, compartmented trust model
+benchmarks/               Executable gates and scored measures
+controls/                 Governance control catalog
 schemas/                  JSON Schema contracts
 src/egypt_trust_map/      Dependency-free validator and CLI
-tests/                    Registry integrity tests
+tests/                    Registry, hierarchy and benchmark tests
 docs/                     Governance, contribution and roadmap detail
 ```
 
-## Seed coverage
+## Market coverage
 
-The repository now contains two complementary datasets:
+The repository now contains four complementary datasets:
 
 - A nine-entry core trust registry covering NTRA/EG-CERT, ITIDA, the Egyptian Root CA context, GOV-CA, ITIDA-listed trust-service providers, CyShield, and ZeroTech.
 - A 42-entry snapshot of every numbered organization visible in the official EG-CERT accredited cybersecurity-provider register on the verification date.
+- A 48-record sector ecosystem covering the named public authorities, all four NTRA-listed mobile-network operators, all 36 banks named on the CBE Instant Payment Network page, and live-registry references for regulated financial and payment institutions.
+- A 35-target technology catalog spanning open identity and policy components, enterprise IAM/PAM compatibility, video-management, camera, biometric, agent, workload, evidence and physical-AI interfaces.
 
 Registry entries carry verification dates and public sources. Inclusion means only that public evidence exists. Accreditation applies only to the service and customer scopes in the live official register and must be rechecked before procurement.
+
+The architecture model adds seven tiers, 27 abstract nodes, four information compartments and three explicit information-flow rules. The benchmark catalog adds 28 non-compensating gates and four weighted operational measures. These models use organization names and abstract roles only; they do not publish personnel, credentials, key material, biometric records, endpoints, deployments or operational topology.
 
 ## Main integration profiles
 
@@ -111,6 +118,8 @@ python -m pip install -e .
 egypt-trust-map verify
 egypt-trust-map summary
 egypt-trust-map assess-sovereignty
+egypt-trust-map verify-hierarchy
+egypt-trust-map benchmark
 python -m unittest discover -s tests -v
 ```
 
@@ -138,13 +147,7 @@ The executable profile contains seven hard gates and eight weighted dimensions t
 | Portability and exit | 10 |
 | Local skills and operability | 5 |
 
-## Vendor-origin clarification
-
-CyberArk was organized under Israeli law. Palo Alto Networks states that it completed the acquisition of CyberArk on February 11, 2026, after which CyberArk became its wholly owned subsidiary. It is therefore present only in [`foreign-compatibility.json`](integrations/foreign-compatibility.json), not in the sovereign core.
-
-RSA Security says it was founded in 1982 by Ron Rivest, Adi Shamir, and Leonard Adleman around their MIT cryptography work. Adi Shamir is Israeli, but RSA Security should not be described as an Israeli company on that basis. It remains a foreign proprietary dependency and receives the same operational-control assessment as any other external provider.
-
-See [sovereignty architecture](docs/SOVEREIGNTY_REFERENCE_ARCHITECTURE.md), [threat model](docs/THREAT_MODEL.md), and [procurement gates](docs/PROCUREMENT_AND_EXIT_GATES.md).
+See [sovereignty architecture](docs/SOVEREIGNTY_REFERENCE_ARCHITECTURE.md), [hierarchical trust system](docs/HIERARCHICAL_TRUST_SYSTEM.md), [benchmark methodology](docs/BENCHMARK_METHODOLOGY.md), [publication boundary](docs/PUBLICATION_BOUNDARY.md), [threat model](docs/THREAT_MODEL.md), and [procurement gates](docs/PROCUREMENT_AND_EXIT_GATES.md).
 
 Arabic readers can start with the [Arabic executive summary](docs/ARABIC_EXECUTIVE_SUMMARY.md). The [source register](docs/SOURCES.md) collects the mutable official and first-party references used by the project.
 

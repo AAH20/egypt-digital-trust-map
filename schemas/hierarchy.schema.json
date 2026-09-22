@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://a2zsoc.com/schemas/egypt-digital-trust-hierarchy.schema.json",
+  "title": "Egypt Digital Trust Public Hierarchy",
+  "type": "object",
+  "required": ["model_id", "publication_class", "privacy_rule", "tiers", "nodes", "compartments", "information_rules"],
+  "properties": {
+    "model_id": {"type": "string"},
+    "publication_class": {"const": "public-reference-only"},
+    "privacy_rule": {"type": "string"},
+    "tiers": {"type": "array", "minItems": 1},
+    "nodes": {"type": "array", "minItems": 1},
+    "compartments": {"type": "array", "minItems": 1},
+    "information_rules": {"type": "array", "minItems": 1}
+  },
+  "additionalProperties": false
+}

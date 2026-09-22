@@ -1,0 +1,54 @@
+{
+  "model_id": "EG-DTF-HIERARCHY-0.3",
+  "publication_class": "public-reference-only",
+  "privacy_rule": "Nodes describe institutions, functions and abstract roles only. Personnel, credentials, endpoints, customer deployments and secret material are prohibited.",
+  "tiers": [
+    {"level": 0, "id": "public-doctrine", "purpose": "Publish constitutional rules, schemas, benchmarks and change history."},
+    {"level": 1, "id": "sovereign-trust", "purpose": "Govern offline roots, recovery, trust domains and policy-signing authority."},
+    {"level": 2, "id": "sector-oversight", "purpose": "Express telecommunications, banking, non-bank finance, trust-service and critical-infrastructure obligations."},
+    {"level": 3, "id": "enterprise-trust-domain", "purpose": "Isolate each organization, environment, legal purpose and data boundary."},
+    {"level": 4, "id": "control-plane", "purpose": "Operate IAM, PAM, workload identity, authorization, data, biometric, physical-security and evidence services."},
+    {"level": 5, "id": "execution", "purpose": "Issue least-privilege authority to people, workloads, agents, devices, robots and vehicles."},
+    {"level": 6, "id": "action-and-evidence", "purpose": "Bind each material action to decision, approval, result, revocation and independently retained evidence."}
+  ],
+  "nodes": [
+    {"id": "doctrine", "tier": 0, "parent": null, "node_type": "public-governance", "public_outputs": ["schemas", "control catalog", "benchmark methodology", "release history"]},
+    {"id": "root-governance", "tier": 1, "parent": "doctrine", "node_type": "abstract-trust-authority", "public_outputs": ["ceremony requirements", "role separation", "cryptoperiod policy"]},
+    {"id": "recovery-governance", "tier": 1, "parent": "doctrine", "node_type": "abstract-recovery-authority", "public_outputs": ["quorum rules", "exercise criteria", "evidence requirements"]},
+    {"id": "telecom-oversight", "tier": 2, "parent": "root-governance", "node_type": "sector-policy-domain", "public_outputs": ["control profile", "assurance requirements"]},
+    {"id": "banking-oversight", "tier": 2, "parent": "root-governance", "node_type": "sector-policy-domain", "public_outputs": ["control profile", "assurance requirements"]},
+    {"id": "nonbank-finance-oversight", "tier": 2, "parent": "root-governance", "node_type": "sector-policy-domain", "public_outputs": ["control profile", "assurance requirements"]},
+    {"id": "trust-service-oversight", "tier": 2, "parent": "root-governance", "node_type": "sector-policy-domain", "public_outputs": ["certificate policy mapping", "assurance requirements"]},
+    {"id": "critical-infrastructure-oversight", "tier": 2, "parent": "root-governance", "node_type": "sector-policy-domain", "public_outputs": ["minimum control profile", "incident evidence contract"]},
+    {"id": "enterprise-production-domain", "tier": 3, "parent": "critical-infrastructure-oversight", "node_type": "tenant-trust-domain", "public_outputs": ["reference boundary", "conformance result"]},
+    {"id": "enterprise-recovery-domain", "tier": 3, "parent": "recovery-governance", "node_type": "recovery-trust-domain", "public_outputs": ["recovery objective", "exercise result"]},
+    {"id": "enterprise-lab-domain", "tier": 3, "parent": "doctrine", "node_type": "synthetic-test-domain", "public_outputs": ["synthetic fixtures", "reproducible results"]},
+    {"id": "human-identity-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "iam-control-plane", "public_outputs": ["protocol profile", "aggregate assurance metrics"]},
+    {"id": "privileged-access-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "pam-control-plane", "public_outputs": ["JIT policy", "aggregate session-evidence metrics"]},
+    {"id": "workload-identity-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "workload-control-plane", "public_outputs": ["SPIFFE profile", "attestation requirements"]},
+    {"id": "agent-authorization-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "agent-control-plane", "public_outputs": ["AgentIAM profile", "delegation tests"]},
+    {"id": "data-rag-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "data-control-plane", "public_outputs": ["ACL propagation contract", "leakage benchmark"]},
+    {"id": "biometric-assertion-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "biometric-control-plane", "public_outputs": ["assertion schema", "evaluation method"]},
+    {"id": "physical-security-plane", "tier": 4, "parent": "enterprise-production-domain", "node_type": "edge-control-plane", "public_outputs": ["gateway profile", "segmentation tests"]},
+    {"id": "evidence-plane", "tier": 4, "parent": "enterprise-recovery-domain", "node_type": "independent-assurance-plane", "public_outputs": ["evidence schema", "integrity results"]},
+    {"id": "human-principal", "tier": 5, "parent": "human-identity-plane", "node_type": "abstract-principal", "public_outputs": ["principal type", "assurance class"]},
+    {"id": "privileged-session", "tier": 5, "parent": "privileged-access-plane", "node_type": "ephemeral-authority", "public_outputs": ["policy class", "expiry", "evidence completeness"]},
+    {"id": "workload-principal", "tier": 5, "parent": "workload-identity-plane", "node_type": "abstract-principal", "public_outputs": ["attestation class", "credential lifetime"]},
+    {"id": "agent-principal", "tier": 5, "parent": "agent-authorization-plane", "node_type": "abstract-principal", "public_outputs": ["delegation depth", "purpose class", "model identity class"]},
+    {"id": "device-principal", "tier": 5, "parent": "physical-security-plane", "node_type": "abstract-principal", "public_outputs": ["device class", "attestation state"]},
+    {"id": "decision-receipt", "tier": 6, "parent": "agent-principal", "node_type": "evidence-object", "public_outputs": ["schema version", "policy revision", "outcome"]},
+    {"id": "privileged-session-receipt", "tier": 6, "parent": "privileged-session", "node_type": "evidence-object", "public_outputs": ["approval count", "expiry", "evidence digest"]},
+    {"id": "physical-action-receipt", "tier": 6, "parent": "device-principal", "node_type": "evidence-object", "public_outputs": ["lease binding", "safety state", "result digest"]}
+  ],
+  "compartments": [
+    {"id": "public", "may_contain": ["published organization names", "standards", "schemas", "synthetic results", "aggregate metrics"]},
+    {"id": "restricted-operations", "may_contain": ["internal role identifiers", "approved topology abstraction", "non-secret configuration references"]},
+    {"id": "confidential-security", "may_contain": ["detailed configuration", "vulnerability evidence", "incident artifacts"], "publication": "prohibited"},
+    {"id": "secret-material", "may_contain": ["credentials", "private keys", "recovery shares", "biometric templates", "watchlists", "live endpoints"], "publication": "prohibited"}
+  ],
+  "information_rules": [
+    {"from": "lower-tier", "to": "higher-tier", "allowed": ["aggregate health", "signed evidence digest", "exception request"], "denied": ["unnecessary personal data", "raw biometric template", "secret material"]},
+    {"from": "higher-tier", "to": "lower-tier", "allowed": ["scoped policy", "short-lived authority", "revocation", "minimum context"], "denied": ["root private material", "unrelated compartment data", "global super-admin credential"]},
+    {"from": "peer-domain", "to": "peer-domain", "allowed": ["federated assertion with audience and expiry", "approved evidence reference"], "denied": ["transitive privilege", "shared administrator credential", "implicit trust"]}
+  ]
+}

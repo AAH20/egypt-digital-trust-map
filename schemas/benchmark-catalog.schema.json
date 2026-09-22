@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://a2zsoc.com/schemas/egypt-digital-trust-benchmark-catalog.schema.json",
+  "title": "Egypt Digital Trust Benchmark Catalog",
+  "type": "object",
+  "required": ["catalog_id", "score_threshold", "rule", "scenarios"],
+  "properties": {
+    "catalog_id": {"type": "string"},
+    "score_threshold": {"type": "number", "minimum": 0, "maximum": 100},
+    "rule": {"type": "string"},
+    "scenarios": {"type": "array", "minItems": 1}
+  },
+  "additionalProperties": false
+}

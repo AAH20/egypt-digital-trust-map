@@ -1,0 +1,84 @@
+{
+  "registry_id": "egypt-sector-digital-trust-ecosystem",
+  "last_verified": "2026-09-22",
+  "coverage_note": "Public institutional and regulated-sector coverage. Records identify organizations and roles only; no personnel, customers, topology, credentials, contracts or non-public deployments are included.",
+  "sources": [
+    {"id": "ntra-operators", "url": "https://www.tra.gov.eg/wp-content/uploads/2025/03/Info-About-Licensed-Operators-without-services-English2.pdf", "scope": "licensed telecommunications operators"},
+    {"id": "cbe-ipn", "url": "https://www.cbe.org.eg/en/payment-systems-and-services/instant-payment-network", "scope": "banks registered to the Instant Payment Network"},
+    {"id": "fra-registers", "url": "https://fra.gov.eg/en/updates/", "scope": "licensed non-bank financial institution registers"},
+    {"id": "itida-trust", "url": "https://itida.gov.eg/English/Pages/E-Signature.aspx", "scope": "digital-signature and electronic-seal trust services"},
+    {"id": "egcert-providers", "url": "https://egcert.eg/cybersecurityserviceproviders-eng/", "scope": "accredited cybersecurity service providers"}
+  ],
+  "groups": [
+    {
+      "id": "public-authorities",
+      "records": [
+        {"id": "mcit", "name": "Ministry of Communications and Information Technology", "role": "national-digital-policy", "evidence_state": "public-authority"},
+        {"id": "ntra", "name": "National Telecom Regulatory Authority", "role": "telecommunications-regulator", "evidence_state": "public-authority"},
+        {"id": "egcert", "name": "Egyptian Computer Emergency Readiness Team", "role": "national-cert", "evidence_state": "public-authority"},
+        {"id": "itida", "name": "Information Technology Industry Development Agency", "role": "digital-signature-regulator-and-root-trust", "evidence_state": "public-authority"},
+        {"id": "cbe", "name": "Central Bank of Egypt", "role": "banking-and-payments-regulator", "evidence_state": "public-authority"},
+        {"id": "fra", "name": "Financial Regulatory Authority", "role": "non-bank-financial-regulator", "evidence_state": "public-authority"}
+      ]
+    },
+    {
+      "id": "mobile-network-operators",
+      "source_id": "ntra-operators",
+      "records": [
+        {"id": "telecom-egypt", "name": "Telecom Egypt", "role": "mobile-and-fixed-network-operator", "evidence_state": "authoritative-listing"},
+        {"id": "vodafone-egypt", "name": "Vodafone Egypt", "role": "mobile-network-operator", "evidence_state": "authoritative-listing"},
+        {"id": "orange-egypt", "name": "Orange Egypt", "role": "mobile-network-operator", "evidence_state": "authoritative-listing"},
+        {"id": "eand-egypt", "name": "e& Egypt / Etisalat Misr", "role": "mobile-network-operator", "evidence_state": "authoritative-listing"}
+      ]
+    },
+    {
+      "id": "ipn-banks",
+      "source_id": "cbe-ipn",
+      "records": [
+        {"id": "central-bank-egypt", "name": "Central Bank of Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "arab-african-international-bank", "name": "Arab African International Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "arab-bank", "name": "Arab Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "banque-du-caire", "name": "Banque du Caire", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "banque-misr", "name": "Banque Misr", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "bank-of-alexandria", "name": "Bank of Alexandria", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "commercial-international-bank", "name": "Commercial International Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "egyptian-gulf-bank", "name": "Egyptian Gulf Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "national-bank-egypt", "name": "National Bank of Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "qnb-alahli", "name": "QNB Alahli", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "saib", "name": "Societe Arabe Internationale de Banque", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "export-development-bank-egypt", "name": "Export Development Bank of Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "arab-international-bank", "name": "Arab International Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "faisal-islamic-bank-egypt", "name": "Faisal Islamic Bank of Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "al-baraka-bank-egypt", "name": "Al Baraka Bank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "attijariwafa-bank-egypt", "name": "Attijariwafa Bank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "adib-egypt", "name": "Abu Dhabi Islamic Bank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "al-ahli-bank-kuwait-egypt", "name": "Al Ahli Bank of Kuwait Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "housing-development-bank", "name": "Housing and Development Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "nbk-egypt", "name": "National Bank of Kuwait Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "egyptian-arab-land-bank", "name": "Egyptian Arab Land Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "suez-canal-bank", "name": "Suez Canal Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "ahli-united-bank", "name": "Ahli United Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "united-bank", "name": "The United Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "hsbc-egypt", "name": "HSBC Bank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "adcb-egypt", "name": "Abu Dhabi Commercial Bank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "fabmisr", "name": "First Abu Dhabi Bank Misr", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "citibank-egypt", "name": "Citibank Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "credit-agricole-egypt", "name": "Credit Agricole Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "mashreq-egypt", "name": "Mashreq Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "emirates-nbd-egypt", "name": "Emirates NBD Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "bank-nxt", "name": "Bank NXT", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "abc-bank-egypt", "name": "Arab Banking Corporation", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "midbank", "name": "MIDBANK", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "industrial-development-bank", "name": "Industrial Development Bank", "role": "ipn-participant", "evidence_state": "authoritative-listing"},
+        {"id": "agricultural-bank-egypt", "name": "Agricultural Bank of Egypt", "role": "ipn-participant", "evidence_state": "authoritative-listing"}
+      ]
+    },
+    {
+      "id": "regulated-registers-not-embedded",
+      "records": [
+        {"id": "fra-licensed-institutions", "name": "FRA Licensed Institutions Registers", "role": "authoritative-live-registry", "evidence_state": "reference-only", "reason": "The authoritative registry is large, paginated and frequently updated; ingest through a dated adapter rather than duplicating stale entries."},
+        {"id": "cbe-licensed-banks", "name": "CBE Licensed Banks Register", "role": "authoritative-live-registry", "evidence_state": "reference-only", "reason": "Use the live CBE register for licensing decisions; the embedded IPN list proves only IPN participation."}
+      ]
+    }
+  ]
+}

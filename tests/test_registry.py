@@ -2,6 +2,14 @@ import json
 import unittest
 from pathlib import Path
 
+from egypt_trust_map.benchmarks import (
+    evaluate,
+    reference_observations,
+    validate_catalog,
+    validate_market_registry,
+    validate_technology_targets,
+)
+from egypt_trust_map.hierarchy import summarize_hierarchy, validate_hierarchy
 from egypt_trust_map.registry import load_registry, summarize, validate_registry
 from egypt_trust_map.sovereignty import assess, load_json, validate_profile, validate_provider_register
 
@@ -34,9 +42,54 @@ class RegistryTests(unittest.TestCase):
         self.assertTrue(any("non-HTTPS" in error for error in validate_registry(document)))
 
     def test_json_assets_parse(self):
-        for directory in ("registry", "integrations", "schemas", "sovereignty", "controls"):
+        for directory in ("registry", "integrations", "schemas", "sovereignty", "controls", "hierarchy", "benchmarks"):
             for path in (ROOT / directory).glob("*.json"):
                 json.loads(path.read_text())
+
+    def test_sector_ecosystem_is_valid_and_source_scoped(self):
+        document = load_json(ROOT / "registry" / "sector-ecosystem.json")
+        self.assertEqual([], validate_market_registry(document))
+        self.assertEqual(48, sum(len(group["records"]) for group in document["groups"]))
+
+    def test_technology_targets_are_valid(self):
+        document = load_json(ROOT / "registry" / "technology-integration-targets.json")
+        self.assertEqual([], validate_technology_targets(document))
+        self.assertEqual(35, len(document["targets"]))
+
+    def test_public_hierarchy_is_valid(self):
+        model = load_json(ROOT / "hierarchy" / "reference-hierarchy.json")
+        self.assertEqual([], validate_hierarchy(model))
+        self.assertEqual(7, summarize_hierarchy(model)["tiers"])
+        self.assertEqual(27, summarize_hierarchy(model)["nodes"])
+
+    def test_public_hierarchy_rejects_sensitive_fields(self):
+        model = load_json(ROOT / "hierarchy" / "reference-hierarchy.json")
+        model["nodes"][0]["password"] = "synthetic-is-still-not-allowed"
+        self.assertTrue(any("prohibited fields" in error for error in validate_hierarchy(model)))
+
+    def test_benchmark_catalog_is_valid(self):
+        catalog = load_json(ROOT / "benchmarks" / "catalog.json")
+        self.assertEqual([], validate_catalog(catalog))
+        self.assertEqual(32, len(catalog["scenarios"]))
+
+    def test_reference_benchmark_qualifies(self):
+        catalog = load_json(ROOT / "benchmarks" / "catalog.json")
+        result = evaluate(catalog, reference_observations(catalog))
+        self.assertTrue(result["qualified"])
+        self.assertEqual(100.0, result["score"])
+
+    def test_benchmark_gate_is_non_compensating(self):
+        catalog = load_json(ROOT / "benchmarks" / "catalog.json")
+        observations = reference_observations(catalog)
+        gate = next(scenario for scenario in catalog["scenarios"] if scenario["mandatory"])
+        observations[gate["id"]] = "unexpected"
+        metric_scores = {
+            scenario["id"]: 100 for scenario in catalog["scenarios"] if not scenario["mandatory"]
+        }
+        result = evaluate(catalog, observations, metric_scores)
+        self.assertFalse(result["qualified"])
+        self.assertEqual(100.0, result["score"])
+        self.assertIn(gate["id"], result["failed_gates"])
 
     def test_sovereignty_profile_totals_100(self):
         profile = load_json(ROOT / "sovereignty" / "requirements.json")

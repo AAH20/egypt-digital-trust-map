@@ -1,21 +1,23 @@
 # Roadmap
 
-## v0.2 — registry expansion
+## v0.3 — current public baseline
 
-- Add source adapters for official provider and trust-service lists; the current 42-provider EG-CERT snapshot is the seed.
+- Maintain dated source adapters for the 42-provider EG-CERT snapshot, NTRA operators, CBE IPN participants, ITIDA trust services and live FRA/CBE registers.
+- Maintain the seven-tier public hierarchy, four compartments and publication boundary.
+- Maintain 28 non-compensating gates and four weighted operational benchmarks.
+- Maintain neutral interoperability targets across IAM, PAM, PKI, workloads, agents, biometrics, surveillance edges and physical AI.
+
+## v0.4 — executable interoperability evidence
+
 - Add Arabic display names and normalized legal-entity identifiers.
 - Add review-expiry alerts and archived records.
-- Add neutral profiles for telecom, cloud, IAM/PAM, PKI, banking, fintech, physical-security and research categories.
 - Capture the permitted service and customer scopes from the live EG-CERT register as normalized, independently reviewed fields.
-
-## v0.3 — interoperability evidence
-
 - Add synthetic OIDC, SAML, SCIM, FIDO2, SPIFFE and AuthZEN labs.
 - Add ONVIF metadata fixtures without images or operational endpoints.
 - Add AgentIAM authorization receipts and GRC Claw control mappings.
 - Sign evidence manifests and publish reproducibility metadata.
 
-## v0.4 — procurement and assurance
+## v0.5 — procurement and assurance
 
 - Publish requirements templates and integration scorecards.
 - Add transparent dispute and correction workflow.
