@@ -10,6 +10,7 @@ from egypt_trust_map.benchmarks import (
     validate_market_registry,
     validate_technology_targets,
 )
+from egypt_trust_map.assurance import digest, envelope
 from egypt_trust_map.hierarchy import summarize_hierarchy, validate_hierarchy
 from egypt_trust_map.registry import load_registry, summarize, validate_registry
 from egypt_trust_map.sovereignty import assess, load_json, validate_profile, validate_provider_register
@@ -83,6 +84,10 @@ class RegistryTests(unittest.TestCase):
         result = evaluate(catalog, reference_observations(catalog))
         self.assertTrue(result["qualified"])
         self.assertEqual(100.0, result["score"])
+        item = envelope(catalog, result)
+        self.assertEqual("reference-fixture", item["qualification"]["score_basis"])
+        self.assertEqual("none", item["evidence"]["verification"])
+        self.assertEqual(digest(result), item["evidence"]["artifact_sha256"])
 
     def test_benchmark_gate_is_non_compensating(self):
         catalog = load_json(ROOT / "benchmarks" / "catalog.json")
