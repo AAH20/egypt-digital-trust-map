@@ -49,6 +49,30 @@ def validate_catalog(catalog: dict) -> list[str]:
     return errors
 
 
+def validate_kpi_baseline(baseline: dict) -> list[str]:
+    errors: list[str] = []
+    if not baseline.get("baseline_id") or baseline.get("status") != "reference-baseline" or not baseline.get("scope"):
+        errors.append("baseline_id, reference-baseline status and scope are required")
+    kpis = baseline.get("kpis")
+    if not isinstance(kpis, list) or not kpis:
+        return errors + ["kpis must be a non-empty array"]
+    ids = [kpi.get("id") for kpi in kpis]
+    duplicates = sorted(key for key, count in Counter(ids).items() if count > 1)
+    if duplicates:
+        errors.append(f"duplicate KPI ids: {', '.join(duplicates)}")
+    for index, kpi in enumerate(kpis):
+        required = {"id", "family", "name", "operator", "target", "unit", "measurement"}
+        missing = sorted(required - set(kpi))
+        if missing:
+            errors.append(f"kpis[{index}] missing: {', '.join(missing)}")
+            continue
+        if kpi["operator"] not in {"eq", "lte", "gte"}:
+            errors.append(f"kpis[{index}].operator is invalid")
+        if not isinstance(kpi["target"], (int, float)) or isinstance(kpi["target"], bool):
+            errors.append(f"kpis[{index}].target must be numeric")
+    return errors
+
+
 def reference_observations(catalog: dict) -> dict:
     return {scenario["id"]: scenario["expected"] for scenario in catalog["scenarios"]}
 

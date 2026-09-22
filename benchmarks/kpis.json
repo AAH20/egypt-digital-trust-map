@@ -1,0 +1,23 @@
+{
+  "baseline_id": "EG-DTF-KPI-0.3",
+  "status": "reference-baseline",
+  "scope": "Inspectable reference targets for a declared test environment. Procurement profiles may set stricter targets but must not silently weaken mandatory gates.",
+  "kpis": [
+    {"id": "KPI-AUTH-P95", "family": "performance", "name": "Local authorization latency P95", "operator": "lte", "target": 50, "unit": "milliseconds", "measurement": "P95 policy-decision latency at the declared steady-state load, excluding client network time."},
+    {"id": "KPI-AUTH-P99", "family": "performance", "name": "Local authorization latency P99", "operator": "lte", "target": 100, "unit": "milliseconds", "measurement": "P99 policy-decision latency at the declared steady-state load, excluding client network time."},
+    {"id": "KPI-REV-P95", "family": "identity", "name": "Material revocation convergence P95", "operator": "lte", "target": 5, "unit": "seconds", "measurement": "P95 time from accepted revocation event to denial at every in-scope enforcement point."},
+    {"id": "KPI-PRIV-TTL", "family": "privileged-access", "name": "Default privileged grant lifetime", "operator": "lte", "target": 15, "unit": "minutes", "measurement": "Maximum default lifetime for a just-in-time privileged grant before explicit renewal."},
+    {"id": "KPI-EVID-COMP", "family": "evidence", "name": "Material-action evidence completeness", "operator": "eq", "target": 100, "unit": "percent", "measurement": "Share of material actions containing principal, purpose, policy revision, decision, approval, time, outcome and integrity digest."},
+    {"id": "KPI-EVID-TAMPER", "family": "evidence", "name": "Evidence tamper detection", "operator": "eq", "target": 100, "unit": "percent", "measurement": "Share of seeded alteration and deletion attempts detected by independent verification."},
+    {"id": "KPI-UNAUTH", "family": "authorization", "name": "Unauthorized material actions accepted", "operator": "eq", "target": 0, "unit": "count", "measurement": "Accepted actions across the mandatory negative authorization suite."},
+    {"id": "KPI-CAM-EGRESS", "family": "surveillance-edge", "name": "Unapproved direct camera egress", "operator": "eq", "target": 0, "unit": "flows", "measurement": "Successful unapproved Internet flows during the camera-zone isolation test."},
+    {"id": "KPI-TENANT-CROSS", "family": "tenant-isolation", "name": "Cross-tenant access successes", "operator": "eq", "target": 0, "unit": "count", "measurement": "Successful reads, writes or authority reuse across tenant boundaries in the isolation suite."},
+    {"id": "KPI-OFFLINE", "family": "sovereignty", "name": "External-isolation continuity", "operator": "gte", "target": 72, "unit": "hours", "measurement": "Continuous local authentication, authorization, revocation and evidence operation with external management routes removed."},
+    {"id": "KPI-RTO", "family": "recovery", "name": "Clean-room recovery time objective", "operator": "lte", "target": 4, "unit": "hours", "measurement": "Elapsed time to restore identity, policy, revocation and evidence verification in a clean environment."},
+    {"id": "KPI-RPO", "family": "recovery", "name": "Evidence recovery point objective", "operator": "lte", "target": 15, "unit": "minutes", "measurement": "Maximum verified evidence gap after the reference recovery exercise."},
+    {"id": "KPI-FAILOVER", "family": "resilience", "name": "Control-plane failover", "operator": "lte", "target": 60, "unit": "seconds", "measurement": "Time to restore policy decisions after loss of one declared control-plane node."},
+    {"id": "KPI-INTEROP", "family": "interoperability", "name": "Declared protocol conformance", "operator": "gte", "target": 95, "unit": "percent", "measurement": "Pass rate across the versioned protocol and portability suite, with every failed case disclosed."},
+    {"id": "KPI-RESTORE", "family": "portability", "name": "Export and replacement restore success", "operator": "eq", "target": 100, "unit": "percent", "measurement": "Required identities, policies and evidence restored and functionally verified on a clean replacement implementation."},
+    {"id": "KPI-NOVENDOR", "family": "operability", "name": "Vendor-independent runbook completion", "operator": "gte", "target": 95, "unit": "percent", "measurement": "Declared operating tasks completed by the authorized local team without supplier intervention."}
+  ]
+}

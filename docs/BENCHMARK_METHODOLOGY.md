@@ -13,6 +13,8 @@ There are two result types:
 
 Qualification therefore requires every mandatory gate and a weighted score of at least 85.
 
+The companion `benchmarks/kpis.json` establishes 16 inspectable reference targets. They cover authorization P95/P99, revocation convergence, privileged-grant lifetime, evidence completeness and tamper detection, unauthorized actions, camera egress, tenant isolation, external-isolation continuity, RTO, RPO, failover, protocol conformance, replacement restore and vendor-independent operations. Each record declares its comparison operator, target, unit and measurement procedure.
+
 ```mermaid
 flowchart LR
     S[Versioned test environment] --> G{All mandatory gates pass?}

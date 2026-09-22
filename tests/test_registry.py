@@ -6,6 +6,7 @@ from egypt_trust_map.benchmarks import (
     evaluate,
     reference_observations,
     validate_catalog,
+    validate_kpi_baseline,
     validate_market_registry,
     validate_technology_targets,
 )
@@ -71,6 +72,11 @@ class RegistryTests(unittest.TestCase):
         catalog = load_json(ROOT / "benchmarks" / "catalog.json")
         self.assertEqual([], validate_catalog(catalog))
         self.assertEqual(32, len(catalog["scenarios"]))
+
+    def test_kpi_baseline_is_valid(self):
+        baseline = load_json(ROOT / "benchmarks" / "kpis.json")
+        self.assertEqual([], validate_kpi_baseline(baseline))
+        self.assertEqual(16, len(baseline["kpis"]))
 
     def test_reference_benchmark_qualifies(self):
         catalog = load_json(ROOT / "benchmarks" / "catalog.json")

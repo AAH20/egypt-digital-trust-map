@@ -17,7 +17,7 @@ Sources are recorded for factual verification, not as project endorsements.
 - [CyShield](https://cyshield.com/)
 - [ZeroTech network-camera catalog](https://zerotechsystems.com/product-category/products/cctv/network-cameras/)
 
-## Open technical foundations
+## Inspectable technical foundations
 
 - [OpenBao](https://openbao.org/)
 - [Keycloak](https://www.keycloak.org/)

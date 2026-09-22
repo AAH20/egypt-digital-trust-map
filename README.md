@@ -3,7 +3,7 @@
 [![CI](https://github.com/AAH20/egypt-digital-trust-map/actions/workflows/verify.yml/badge.svg)](https://github.com/AAH20/egypt-digital-trust-map/actions/workflows/verify.yml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 
-An open, bilingual-ready registry, sovereignty profile, and interoperability lab for Egypt's IAM, PAM, PKI, cybersecurity, biometrics, video-surveillance governance, AI-agent identity, and critical-infrastructure ecosystem.
+An inspectable, bilingual-ready baseline that establishes reproducible benchmarks and KPIs for Egypt's IAM, PAM, PKI, cybersecurity, biometrics, video-surveillance governance, AI-agent identity, and critical-infrastructure ecosystem.
 
 The project separates three things that are often confused:
 
@@ -31,7 +31,9 @@ Foreign proprietary platforms may be supported through bounded compatibility ada
 
 ## Why this repository exists
 
-Egypt has authoritative but distributed information: EG-CERT publishes accredited cybersecurity providers; ITIDA publishes licensed digital-signature providers; vendors and integrators publish their own services; and identity, physical security, and AI governance are normally evaluated in separate procurement processes. This repository provides one open data model for examining those relationships without collecting operational credentials, biometric templates, or surveillance footage.
+Egypt has authoritative but distributed information: EG-CERT publishes accredited cybersecurity providers; ITIDA publishes licensed digital-signature providers; vendors and integrators publish their own services; and identity, physical security, and AI governance are normally evaluated in separate procurement processes. This repository provides one inspectable baseline for examining those relationships without collecting operational credentials, biometric templates, or surveillance footage.
+
+The baseline turns market claims into measurable evidence. Mandatory gates establish the minimum acceptable security, sovereignty, privacy and recoverability conditions. Weighted KPIs measure authorization latency, resilience, interoperability, portability and operating effort against published thresholds.
 
 ## Architecture
 
@@ -92,11 +94,11 @@ The repository now contains four complementary datasets:
 - A nine-entry core trust registry covering NTRA/EG-CERT, ITIDA, the Egyptian Root CA context, GOV-CA, ITIDA-listed trust-service providers, CyShield, and ZeroTech.
 - A 42-entry snapshot of every numbered organization visible in the official EG-CERT accredited cybersecurity-provider register on the verification date.
 - A 48-record sector ecosystem covering the named public authorities, all four NTRA-listed mobile-network operators, all 36 banks named on the CBE Instant Payment Network page, and live-registry references for regulated financial and payment institutions.
-- A 35-target technology catalog spanning open identity and policy components, enterprise IAM/PAM compatibility, video-management, camera, biometric, agent, workload, evidence and physical-AI interfaces.
+- A 35-target technology catalog spanning inspectable and self-hostable identity and policy components, enterprise IAM/PAM compatibility, video-management, camera, biometric, agent, workload, evidence and physical-AI interfaces.
 
 Registry entries carry verification dates and public sources. Inclusion means only that public evidence exists. Accreditation applies only to the service and customer scopes in the live official register and must be rechecked before procurement.
 
-The architecture model adds seven tiers, 27 abstract nodes, four information compartments and three explicit information-flow rules. The benchmark catalog adds 28 non-compensating gates and four weighted operational measures. These models use organization names and abstract roles only; they do not publish personnel, credentials, key material, biometric records, endpoints, deployments or operational topology.
+The architecture model adds seven tiers, 27 abstract nodes, four information compartments and three explicit information-flow rules. The benchmark catalog adds 28 non-compensating gates, four weighted operational measures and 16 machine-readable KPIs with declared operators, targets, units and measurement procedures. These models use organization names and abstract roles only; they do not publish personnel, credentials, key material, biometric records, endpoints, deployments or operational topology.
 
 ## Main integration profiles
 

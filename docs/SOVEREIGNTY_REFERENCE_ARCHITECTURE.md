@@ -92,21 +92,21 @@ flowchart TB
 
 The vendor gateway is disabled by default. Activation requires a ticket, named individual, approved purpose, exact target, short expiry, session recording, egress allow-list, malware scanning and post-session credential rotation.
 
-## Preferred open components and their limits
+## Preferred inspectable components and their limits
 
 | Function | Candidate | Sovereignty value | Remaining work |
 |---|---|---|---|
 | Workforce and application identity | Keycloak | Self-hosted OIDC/SAML and replaceable protocols | Hardening, HA, lifecycle source, admin separation |
 | Linux identity | FreeIPA | Local directory, Kerberos and certificate integration | Cross-domain design and recovery testing |
 | Legacy directory compatibility | Samba AD/OpenLDAP | Reduces proprietary lock-in at protocol boundary | Feature parity and migration testing |
-| Secrets and dynamic credentials | OpenBao | Open-source, community-governed and self-hosted | HSM design, HA, plugins, ceremonies and operations |
+| Secrets and dynamic credentials | OpenBao | Inspectable, community-governed and self-hosted | HSM design, HA, plugins, ceremonies and operations |
 | Workload identity | SPIRE | Attested short-lived identities | Node attestors, federation and trust-domain operations |
 | Policy | OPA/Rego | Replaceable policy engine | Policy governance, testing and decision logs |
 | Agent authority | AgentIAM | Purpose-bound delegation and receipts | Production signing, adapters and independent review |
 | Governance evidence | GRC Claw | Control mapping and evidence automation | Data contracts and assurance workflows |
 | Physical-action evidence | Robot Black Box | Action and incident reconstruction | Hardware anchoring and safety integration |
 
-Open source increases inspectability and exit options; it does not remove supply-chain, insider, configuration, maintenance or governance risk.
+Inspectable and self-hostable components can improve verification and exit options; they do not remove supply-chain, insider, configuration, maintenance or governance risk. Qualification depends on benchmark evidence and measured KPIs rather than a licensing label.
 
 ## Foreign-product compatibility boundary
 

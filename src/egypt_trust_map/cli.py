@@ -8,6 +8,7 @@ from .benchmarks import (
     evaluate,
     reference_observations,
     validate_catalog,
+    validate_kpi_baseline,
     validate_market_registry,
     validate_technology_targets,
 )
@@ -58,6 +59,7 @@ def main() -> int:
     errors.extend(validate_technology_targets(load_json(root / "registry" / "technology-integration-targets.json")))
     errors.extend(validate_hierarchy(load_json(root / "hierarchy" / "reference-hierarchy.json")))
     errors.extend(validate_catalog(load_json(root / "benchmarks" / "catalog.json")))
+    errors.extend(validate_kpi_baseline(load_json(root / "benchmarks" / "kpis.json")))
     if errors:
         print(json.dumps({"valid": False, "errors": errors}, indent=2))
         return 1
@@ -66,6 +68,7 @@ def main() -> int:
         market_records = sum(len(group["records"]) for group in load_json(root / "registry" / "sector-ecosystem.json")["groups"])
         technology_targets = len(load_json(root / "registry" / "technology-integration-targets.json")["targets"])
         benchmark_count = len(load_json(root / "benchmarks" / "catalog.json")["scenarios"])
+        kpi_count = len(load_json(root / "benchmarks" / "kpis.json")["kpis"])
         print(
             json.dumps(
                 {
@@ -75,6 +78,7 @@ def main() -> int:
                     "sector_records": market_records,
                     "technology_targets": technology_targets,
                     "benchmarks": benchmark_count,
+                    "kpis": kpi_count,
                 },
                 indent=2,
             )

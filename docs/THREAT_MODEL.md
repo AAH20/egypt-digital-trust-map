@@ -24,7 +24,7 @@
 | Camera compromise | Device becomes a network pivot | Segmentation, one-way collection where possible, no Internet egress | Lateral-movement simulation |
 | Evidence deletion | Compromised PAM erases its own trail | Independent append-only evidence | Privileged deletion attempt |
 | Break-glass abuse | Emergency account becomes permanent master key | Sealed quorum activation, expiry and review | Unannounced activation drill |
-| Supplier lock-in | Policies or secrets cannot migrate | Open contracts and tested export/restore | Annual replacement exercise |
+| Supplier lock-in | Policies or secrets cannot migrate | Inspectable contracts and tested export/restore | Annual replacement exercise |
 | Insider collusion | Operators combine roles outside governance | Technical role separation and multi-party approval | Collusion tabletop and access graph review |
 | Model substitution | Physical agent runs an unapproved model | Model digest attestation and action lease | Digest mismatch test |
 | Fail-open partition | PDP outage permits privileged action | Local HA and fail-closed enforcement | Partition injection |
