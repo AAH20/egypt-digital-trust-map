@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1.0",
+  "coverage_status": "seed-not-exhaustive",
+  "last_reviewed": "2026-09-22",
+  "players": [
+    {
+      "id": "ntra-eg-cert",
+      "name": "National Telecom Regulatory Authority / EG-CERT",
+      "player_types": ["regulator", "national-cert"],
+      "capabilities": ["incident-response", "critical-infrastructure-coordination", "provider-registry"],
+      "source_status": "authoritative",
+      "sources": ["https://www.tra.gov.eg/en/industry/eg-cert/", "https://egcert.eg/cybersecurityserviceproviders-eng/"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "itida",
+      "name": "Information Technology Industry Development Agency",
+      "player_types": ["regulator", "root-trust-operator"],
+      "capabilities": ["digital-signature-regulation", "electronic-seal-regulation", "root-ca"],
+      "source_status": "authoritative",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx", "https://rootca.itida.gov.eg/"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "gov-ca",
+      "name": "Government Digital Certification Authority",
+      "player_types": ["government-trust-service"],
+      "capabilities": ["government-digital-certificates"],
+      "source_status": "authoritative-listing",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "el-delta-electronic-systems",
+      "name": "El Delta Electronic Systems",
+      "player_types": ["licensed-trust-service-provider"],
+      "capabilities": ["digital-signature", "electronic-seal"],
+      "source_status": "authoritative-listing",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "fixed-misr",
+      "name": "Fixed Misr",
+      "player_types": ["licensed-trust-service-provider", "cybersecurity-provider"],
+      "capabilities": ["digital-signature", "electronic-seal"],
+      "source_status": "authoritative-listing",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "mcdr",
+      "name": "Misr for Central Clearing, Depository and Registry",
+      "player_types": ["licensed-trust-service-provider", "financial-market-infrastructure"],
+      "capabilities": ["digital-signature", "electronic-seal"],
+      "source_status": "authoritative-listing",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "egypt-trust",
+      "name": "Egypt Trust",
+      "player_types": ["licensed-trust-service-provider"],
+      "capabilities": ["digital-signature", "electronic-seal"],
+      "source_status": "authoritative-listing",
+      "sources": ["https://itida.gov.eg/English/Pages/E-Signature.aspx"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "cyshield",
+      "name": "CyShield Technology",
+      "player_types": ["accredited-cybersecurity-provider", "system-integrator"],
+      "capabilities": ["grc", "soc", "incident-response", "secure-infrastructure", "ai-data-science"],
+      "source_status": "authoritative-listing-and-first-party-claim",
+      "sources": ["https://egcert.eg/cybersecurityserviceproviders-eng/", "https://cyshield.com/"],
+      "last_verified": "2026-09-22"
+    },
+    {
+      "id": "zerotech",
+      "name": "ZeroTech",
+      "player_types": ["physical-security-vendor", "system-integrator"],
+      "capabilities": ["video-surveillance", "network-cameras", "physical-security-integration"],
+      "source_status": "first-party-claim",
+      "sources": ["https://zerotechsystems.com/product-category/products/cctv/network-cameras/"],
+      "last_verified": "2026-09-22"
+    }
+  ]
+}

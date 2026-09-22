@@ -1,0 +1,14 @@
+{
+  "schema_version": "0.1.0",
+  "profiles": [
+    {"id": "oidc-oauth", "domain": "identity-federation", "interfaces": ["OIDC", "OAuth 2.x"]},
+    {"id": "saml-ldap", "domain": "enterprise-identity", "interfaces": ["SAML 2.0", "LDAP"]},
+    {"id": "scim", "domain": "identity-lifecycle", "interfaces": ["SCIM 2.0"]},
+    {"id": "fido-pki", "domain": "strong-authentication", "interfaces": ["FIDO2", "WebAuthn", "X.509"]},
+    {"id": "spiffe-spire", "domain": "workload-identity", "interfaces": ["SPIFFE ID", "X.509-SVID", "JWT-SVID"]},
+    {"id": "authzen-agentiam", "domain": "authorization", "interfaces": ["AuthZEN", "AgentIAM JSON contracts"]},
+    {"id": "pam-secrets", "domain": "privileged-access", "interfaces": ["CyberArk", "Delinea", "BeyondTrust", "OpenBao", "Vault-compatible API"]},
+    {"id": "onvif", "domain": "video-governance", "interfaces": ["ONVIF device metadata", "ONVIF events"]},
+    {"id": "evidence", "domain": "assurance", "interfaces": ["OpenTelemetry", "OSCAL", "GRC Claw", "Robot Black Box"]}
+  ]
+}

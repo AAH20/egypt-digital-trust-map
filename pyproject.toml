@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "egypt-digital-trust-map"
+version = "0.1.0"
+description = "Source-backed registry and interoperability lab for Egypt's digital trust ecosystem"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+keywords = ["egypt", "iam", "pam", "pki", "digital trust", "ai governance"]
+
+[project.scripts]
+egypt-trust-map = "egypt_trust_map.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
