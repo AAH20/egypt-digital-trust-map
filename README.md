@@ -115,6 +115,16 @@ Product names identify integration targets and do not imply affiliation.
 
 ## Run locally
 
+The EG-CERT snapshot can be checked for age and compared with a manually prepared candidate. The comparison reports added, removed, renamed, and renumbered entries; it does not update the tracked registry or infer a provider's authorized service scope. Review the live authority page and the proposed diff before accepting a source update.
+
+```bash
+egypt-trust-map source-freshness --max-age-days 30
+egypt-trust-map review-egcert --candidate path/to/egcert-candidate.json
+egypt-trust-map benchmark --assurance-output reports/egypt-reference-assurance.json
+```
+
+The assurance envelope follows [BioPhysical Assurance Commons' `assurance-result.v1` contract](https://github.com/AAH20/biophysical-assurance-commons/tree/main/packages/assurance-contracts). Its 100-point benchmark value is marked `reference-fixture`, with `verification: none`; it is not a measured provider result.
+
 ```bash
 python -m pip install -e .
 egypt-trust-map verify
